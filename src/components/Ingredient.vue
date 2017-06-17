@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss">
 .ingredient strong { font-weight: 500; }
-.ingredient { font-size: 2rem; display: flex; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; padding: 0.3rem 0; color: #444; }
+.ingredient { font-size: 2rem; display: flex; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; padding: 0.5rem 0; color: #444; }
 .ingredient p { margin: 0; }
 .ingredient .left { flex: 1; text-align: right; white-space: nowrap; }
 .ingredient .right { flex: 2; margin-left: 1.2rem; cursor: pointer; }

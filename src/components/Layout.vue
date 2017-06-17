@@ -25,11 +25,11 @@ export default {
 <style lang="scss">
 * { padding: 0; margin: 0; box-sizing: border-box; }
 html { font-size: 62.5%; }
-html, body { height: 100%; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -webkit-text-size-adjust: 100%; }
+html, body { height: 100%; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -webkit-text-size-adjust: 100%; color: #454547; background-color: #fafafa; }
 h1, h2, h3, h4, h5 { color: #333; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif}
-h1 { font-size: 2rem; font-weight: 500; text-transform: uppercase; }
+h1 { font-size: 2rem; font-weight: 600; text-transform: lowercase; }
 h2 { font-size: 2rem; font-weight: 300; }
-h3 { font-size: 2rem; font-weight: 600; text-transform: uppercase; margin: 2rem 0; }
+h3 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin: 2rem 0; }
 h4 { font-size: 1.5rem; text-transform: uppercase; font-weight: 500; margin: 1rem 0; }
 h5 { font-size: 1.5rem; }
 a { color: inherit; text-decoration: none; }

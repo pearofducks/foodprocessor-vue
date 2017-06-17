@@ -42,7 +42,7 @@ const actions = {
   setCurrentRecipe: ({ commit }, name) => { commit('setCurrentRecipe', name) },
   getRecipes ({ commit, state }) {
     if (Object.keys(state.recipes).length != 0) { return }
-    fetch('/static/recipes.js')
+    fetch('/recipes.js')
       .then(response => response.json())
       .then(json => commit('hydrate', json))
       .catch(err => console.error(err))
