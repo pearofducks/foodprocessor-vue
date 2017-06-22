@@ -12,12 +12,6 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  watch: {
-    currentRecipeName: function() {
-      let title = this.currentRecipeName ? this.currentRecipeName : "recipes"
-      document.title = `h|f - ${title}`
-    }
-  },
   computed: mapGetters(['displayingRecipe', 'currentRecipeName'])
 }
 </script>

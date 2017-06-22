@@ -64,4 +64,12 @@ let router = new VueRouter({
     { path: '*', redirect: '/' }
   ]
 })
+router.beforeEach((to, from, next) => {
+  store.dispatch('setCurrentRecipe', to.params.recipe)
+  let name = store.getters.currentRecipeName
+  let title = name ? name : "recipes"
+  document.title = `h|f - ${title}`
+  next()
+})
+
 new Vue({ router, store, render: h => h(App) }).$mount('#app')

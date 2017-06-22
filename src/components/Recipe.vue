@@ -20,7 +20,6 @@ import IngredientSection from './IngredientSection.vue'
 
 export default {
   components: { Ingredient, IngredientSection },
-  mounted() { this.$store.dispatch('setCurrentRecipe', this.$route.params.recipe) },
   computed: {
     what() {
       return this.$store.getters.currentRecipeData
