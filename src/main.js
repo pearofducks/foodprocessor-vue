@@ -9,6 +9,8 @@ import Recipe from './components/Recipe.vue'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
+const titlePrefix = "h|f"
+
 function slugify(s) {
   return s.toString().toLowerCase()
     .replace(/\s+/g, '-')
@@ -68,7 +70,7 @@ router.beforeEach((to, from, next) => {
   store.dispatch('setCurrentRecipe', to.params.recipe)
   let name = store.getters.currentRecipeName
   let title = name ? name : "recipes"
-  document.title = `h|f - ${title}`
+  document.title = `${titlePrefix} - ${title}`
   next()
 })
 
