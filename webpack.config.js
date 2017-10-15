@@ -13,12 +13,22 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
+        // options: {
+        //   loaders: {
+        //     'scss': 'vue-style-loader!css-loader!sass-loader',
+        //     'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+        //   }
+        // }
+      },
+      {
+        test: /\.scss$/,
+        loader: 'vue-style-loader!css-loader!sass-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: ['./src/index.html']
       },
       {
         test: /\.js$/,

@@ -1,0 +1,6 @@
+<div class="ingredientSectionBlock">
+  <h4>{{header}}</h4>
+  <template v-for="(value,key) in content">
+    <Ingredient :amount-data="value" :title-data="key"></Ingredient>
+  </template>
+</div>

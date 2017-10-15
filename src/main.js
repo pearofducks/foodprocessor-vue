@@ -2,9 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import marked from 'marked'
-import App from './App.vue'
-import RecipeList from './components/RecipeList.vue'
-import Recipe from './components/Recipe.vue'
+import App from './app.js'
+import RecipeList from './components/recipeList.js'
+import Recipe from './components/recipe.js'
+import './style.scss'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

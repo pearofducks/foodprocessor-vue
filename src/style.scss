@@ -1,26 +1,7 @@
-<template>
-  <div id="app" class="container">
-    <nav class="header">
-      <h1 v-if="displayingRecipe"><router-link to="/">honneffer | food</router-link></h1>
-      <h1 v-else>honneffer | food</h1>
-      <h2>{{ currentRecipeName }}</h2>
-    </nav>
-    <router-view/>
-  </div>
-</template>
-
-<script>
-import { mapGetters } from 'vuex'
-export default {
-  computed: mapGetters(['displayingRecipe', 'currentRecipeName'])
-}
-</script>
-
-<style lang="scss">
 * { padding: 0; margin: 0; box-sizing: border-box; }
 html { font-size: 62.5%; }
 html, body { height: 100%; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -webkit-text-size-adjust: 100%; color: #454547; background-color: #fafafa; }
-h1, h2, h3, h4, h5 { color: #333; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif}
+h1, h2, h3, h4, h5 { color: #333; font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif; }
 h1 { font-size: 2rem; font-weight: 600; text-transform: lowercase; }
 h2 { font-size: 2rem; font-weight: 300; }
 h3 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin: 2rem 0; }
@@ -31,6 +12,29 @@ a:hover { color: #333; color: transparent; text-shadow: 0 0 #333, .08em 0 0 #fff
 .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #eee; padding: 2.5rem 0; margin-bottom: 2.5rem;}
 .container { width: 75%; margin: 0 auto; padding-bottom: 3rem; }
 
+.recipeListBlock ul { list-style: none; }
+.recipeListBlock li { height: 4rem; }
+
+.whatBlock, .howBlock { margin: 2.5rem 0; }
+.howBlock { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif; font-size: 1.7rem; font-weight: 400; }
+.howTextBlock { line-height: 160%;
+  strong { font-weight: 600; }
+  ol, ul { margin-left: 2rem; margin-bottom: 1.5rem; }
+  p { margin-top: 1.5rem; margin-bottom: 0; }
+  li { padding-left: 1.5rem; margin: 0.75rem 0; }
+  ul & li, ul & ul, ol & ul, ul & ol, ol & ol { margin-top: 0; margin-bottom: 0; }
+}
+
+.ingredient strong { font-weight: 500; }
+.ingredient { font-size: 2rem; display: flex; font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif; padding: 0.5rem 0; color: #444; }
+.ingredient p { margin: 0; }
+.ingredient .left { flex: 1; text-align: right; white-space: nowrap; }
+.ingredient .right { flex: 2; margin-left: 1.2rem; cursor: pointer; }
+.ingredient.completed { text-decoration: line-through; color: #bbb; }
+
+.ingredientSectionBlock .ingredient { border-left: 1px solid #ddd; margin-left: 2px; }
+.ingredientSectionBlock { margin: 1.5rem 0; }
+
 @media only screen and (max-device-width: 480px) {
   html { font-size: 40%; }
   body { width: 100%; }
@@ -38,4 +42,3 @@ a:hover { color: #333; color: transparent; text-shadow: 0 0 #333, .08em 0 0 #fff
   .howBlock { font-size: 1.7rem; }
   .howTextBlock ul, .howTextBlock ol { margin-left: 5rem; }
 }
-</style>
