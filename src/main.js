@@ -31,25 +31,18 @@ class RecipeStore {
 
 const state = { recipes: {}, currentRecipe: '' }
 const mutations = {
-  hydrate: (state, json) => {
-    let hydrated = {}
-    json
+  hydrate: (state) => {
+    state.recipes = window.recipes
       .sort((a,b) => a.name.localeCompare(b.name))
-      .forEach( r => hydrated[slugify(r.name)] = new RecipeStore(r.name, r.what, r.how))
-    state.recipes = hydrated
+      .reduce((accum, r) => {
+        accum[slugify(r.name)] = new RecipeStore(r.name, r.what, r.how)
+        return accum
+      }, {})
   },
   setCurrentRecipe: (state, name) => state.currentRecipe = name,
   clearCurrentRecipe: (state) => { state.currentRecipe = '' }
 }
 const actions = {
-  setCurrentRecipe: ({ commit }, name) => { commit('setCurrentRecipe', name) },
-  getRecipes ({ commit, state }) {
-    if (Object.keys(state.recipes).length != 0) { return }
-    fetch('/recipes.js')
-      .then(response => response.json())
-      .then(json => commit('hydrate', json))
-      .catch(err => console.error(err))
-  }
 }
 const getters = {
   displayingRecipe: state => state.currentRecipe != '',
@@ -57,6 +50,8 @@ const getters = {
   currentRecipeName: (state, getters) => getters.currentRecipeData ? getters.currentRecipeData.name : "",
 }
 const store = new Vuex.Store({ state, actions, mutations, getters })
+
+store.commit('hydrate')
 
 let router = new VueRouter({
   mode: 'history',
@@ -68,7 +63,7 @@ let router = new VueRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  store.dispatch('setCurrentRecipe', to.params.recipe)
+  store.commit('setCurrentRecipe', to.params.recipe)
   let name = store.getters.currentRecipeName
   let title = name ? name : "recipes"
   document.title = `${titlePrefix} - ${title}`

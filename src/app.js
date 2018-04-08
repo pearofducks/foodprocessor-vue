@@ -7,5 +7,4 @@ import { mapGetters } from 'vuex'
   computed: mapGetters(['displayingRecipe', 'currentRecipeName'])
 })
 export default class App extends Vue {
-  mounted() { this.$store.dispatch('getRecipes') }
 }
