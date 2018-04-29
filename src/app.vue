@@ -1,19 +1,17 @@
 <template>
   <div id="app" class="container">
     <nav class="header">
-      <h1 v-if="displayingRecipe"><router-link to="/">honneffer | food</router-link></h1>
-      <h1 v-else>honneffer | food</h1>
-      <h2>{{ currentRecipeName }}</h2>
+      <h1>
+        <router-link to="/">honneffer | food</router-link>
+      </h1>
+      <h2>{{ _state.currentRecipeName }}</h2>
     </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: 'app',
-  computed: mapGetters(['displayingRecipe', 'currentRecipeName'])
+  name: 'app'
 }
 </script>
