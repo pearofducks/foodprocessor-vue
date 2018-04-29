@@ -10,8 +10,6 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.commit('clearCurrentRecipe')
-  }
+  name: "RecipeList"
 }
 </script>

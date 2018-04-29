@@ -46,7 +46,7 @@ const mutations = {
 }
 const actions = {}
 const getters = {
-  displayingRecipe: state => state.currentRecipe != '',
+  displayingRecipe: state => !!state.currentRecipe,
   currentRecipeData: state => state.recipes[state.currentRecipe],
   currentRecipeName: (state, getters) => (getters.currentRecipeData ? getters.currentRecipeData.name : '')
 }
@@ -57,10 +57,15 @@ store.commit('hydrate')
 let router = new VueRouter({
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
-  routes: [{ path: '/:recipe', component: Recipe }, { path: '/', component: RecipeList }, { path: '*', redirect: '/' }]
+  routes: [
+    { path: '/:recipe', component: Recipe },
+    { path: '/', component: RecipeList },
+    { path: '*', redirect: '/' }
+  ]
 })
+
 router.beforeEach((to, from, next) => {
-  store.commit('setCurrentRecipe', to.params.recipe)
+  store.commit('setCurrentRecipe', to.params.recipe || "")
   let name = store.getters.currentRecipeName
   let title = name ? name : 'recipes'
   document.title = `${titlePrefix} - ${title}`

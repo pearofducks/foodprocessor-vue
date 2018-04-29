@@ -2,12 +2,15 @@
   <div class="recipeBlock">
     <div class="whatBlock">
       <h3>what</h3>
-      <template v-for="(value,key) in what">
+      <template v-for="(value, key) in what">
         <Ingredient v-if="typeof(value) === 'string'" :amount-data="value" :title-data="key" :key="key"/>
         <IngredientSection v-else :header="key" :content="value" :key="key"/>
       </template>
     </div>
-    <div class="howBlock"><h3>how</h3><div class="howTextBlock" v-html="how"></div></div>
+    <div class="howBlock">
+      <h3>how</h3>
+      <div class="howTextBlock" v-html="how"/>
+    </div>
   </div>
 </template>
 
