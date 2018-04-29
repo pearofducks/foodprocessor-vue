@@ -13,22 +13,11 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        // options: {
-        //   loaders: {
-        //     'scss': 'vue-style-loader!css-loader!sass-loader',
-        //     'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-        //   }
-        // }
       },
       {
         test: /\.scss$/,
         loader: 'vue-style-loader!css-loader!sass-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.html$/,
-        loader: 'raw-loader',
-        exclude: ['./src/index.html']
       },
       {
         test: /\.js$/,
@@ -49,28 +38,4 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      comments: false,
-      screwIe: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
 }
