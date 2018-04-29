@@ -1,7 +1,7 @@
 <template>
   <div class="ingredient" :class="{ 'completed': isCompleted }">
     <div class="left">{{ amount }}</div>
-    <div class="right" v-if="amountIsBlank" @click="toggleCompleted" v-html="markupTitle"></div>
+    <div class="right" v-if="!!!amountData" @click="toggleCompleted" v-html="markupTitle()"></div>
     <div class="right" v-else @click="toggleCompleted">
       <strong>{{ title[0] }}</strong>
       <em v-if="title.length == 2">{{ title[1] }}</em>
@@ -20,12 +20,6 @@ export default {
     didExpand: true
   }),
   computed: {
-    amountIsBlank() {
-      return this.amountData === ''
-    },
-    markupTitle() {
-      return marked(this.titleData)
-    },
     amount() {
       let amountArray = /(\d*\.?\d+)\s(.+)/.exec(this.amountData)
       let calculatedAmount = ''
@@ -44,11 +38,11 @@ export default {
     title() {
       return this.titleData.split(' - ')
     },
-    how() {
-      return this.$store.getters.currentRecipeData ? this.$store.getters.currentRecipeData.how : ''
-    }
   },
   methods: {
+    markupTitle() {
+      return marked(this.titleData)
+    },
     toggleCompleted() {
       this.isCompleted = !this.isCompleted
     },
