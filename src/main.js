@@ -54,13 +54,11 @@ let router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   state.currentRecipe = to.params.recipe || ''
-  let name = state.currentRecipeName
-  let title = name ? name : 'recipes'
+  const name = state.currentRecipeName
+  const title = name ? name : 'recipes'
   document.title = `${titlePrefix} - ${title}`
   next()
 })
 
 Vue.prototype._state = state
 new Vue({ router, render: h => h(App) }).$mount('#app')
-
-export { state }
