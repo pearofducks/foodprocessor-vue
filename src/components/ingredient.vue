@@ -23,17 +23,16 @@ export default {
   computed: {
     amount() {
       const amountArray = /(\d*\.?\d+)\s(.+)/.exec(this.amountData)
-      if (amountArray) {
-        const toExpand = amountArray[2]
-        const expanded_measure = this.expand(toExpand)
-        const didExpand = expanded_measure !== toExpand
-        const amount_raw = parseFloat(amountArray[1])
-        const amount_display = this.prettyify_amount(amount_raw)
-        const greaterThanOne = amount_raw > 1
-        const addSuffix = greaterThanOne && didExpand
-        return `${amount_display} ${expanded_measure}${addSuffix ? 's' : ''}`
-      }
-      return this.amountData
+      if (!amountArray) return this.amountData
+
+      const toExpand = amountArray[2]
+      const expanded_measure = this.expand(toExpand)
+      const didExpand = expanded_measure !== toExpand
+      const amount_raw = parseFloat(amountArray[1])
+      const amount_display = this.prettyify_amount(amount_raw)
+      const greaterThanOne = amount_raw > 1
+      const addSuffix = greaterThanOne && didExpand
+      return `${amount_display} ${expanded_measure}${addSuffix ? 's' : ''}`
     },
     title() {
       return this.titleData.split(' - ')
