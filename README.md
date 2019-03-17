@@ -1,18 +1,7 @@
-# v-foodprocessor
+> foodprocessor-vue
 
-> recipe display frontend app
+Vue app for displaying recipes written in YAML shorthand
 
-## Build Setup
+### dev
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+You'll need a `recipes.js` file at the root of this project.
