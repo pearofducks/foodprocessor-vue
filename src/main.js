@@ -9,29 +9,18 @@ Vue.use(VueRouter)
 
 const titlePrefix = 'h|f'
 
-function slugify(s) {
-  return s
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-}
-
-class RecipeStore {
-  constructor(name, what, how) {
-    this.name = name
-    this.what = what
-    this.how = how.join('\n\n')
-  }
-}
+const slugify = (s) => s.toString()
+  .toLowerCase()
+  .replace(/\s+/g, '-')
+  .replace(/[^\w\-]+/g, '')
+  .replace(/\-\-+/g, '-')
+  .replace(/^-+/, '')
+  .replace(/-+$/, '')
 
 const state = new Vue({
   data: () => ({
     recipes: window.recipes.sort((a, b) => a.name.localeCompare(b.name)).reduce((accum, r) => {
-      accum[slugify(r.name)] = new RecipeStore(r.name, r.what, r.how)
+      accum[slugify(r.name)] = { name: r.name, what: r.what, how: r.how.join('\n\n') }
       return accum
     }, {}),
     currentRecipe: ''
@@ -46,7 +35,7 @@ const state = new Vue({
   }
 })
 
-let router = new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [{ path: '/:recipe', component: Recipe }, { path: '/', component: RecipeList }, { path: '*', redirect: '/' }]
