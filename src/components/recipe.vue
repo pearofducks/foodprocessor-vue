@@ -1,16 +1,16 @@
 <template>
   <div class="recipeBlock">
-    <div class="whatBlock">
-      <h3>what</h3>
+    <section class="whatBlock" aria-labelledby="whatLabel">
+      <h3 id="whatLabel">what</h3>
       <template v-for="(value, key) in what">
-        <Ingredient v-if="typeof(value) === 'string'" :amount-data="value" :title-data="key" :key="key"/>
-        <IngredientSection v-else :header="key" :content="value" :key="key"/>
+        <IngredientSection v-if="Object(value) === value" :header="key" :content="value" :key="key"/>
+        <Ingredient v-else :amount-data="value" :title-data="key" :key="key"/>
       </template>
-    </div>
-    <div class="howBlock">
-      <h3>how</h3>
-      <div class="howTextBlock" v-html="how"/>
-    </div>
+    </section>
+    <section class="howBlock" aria-labelledby="howLabel">
+      <h3 id="howLabel">how</h3>
+      <span class="howTextBlock" v-html="how"/>
+    </section>
   </div>
 </template>
 

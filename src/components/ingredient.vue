@@ -1,10 +1,12 @@
 <template>
   <div class="ingredient" :class="{ 'completed': isCompleted }">
     <div class="left">{{ amount }}</div>
-    <div class="right" v-if="!!!amountData" @click="toggleCompleted" v-html="markupTitle()"></div>
-    <div class="right" v-else @click="toggleCompleted">
-      <strong>{{ title[0] }}</strong>
-      <em v-if="title.length == 2">{{ title[1] }}</em>
+    <div class="right" @click="toggleCompleted">
+      <span v-if="!amountData" v-html="markupTitle()" />
+      <template v-else>
+        <strong>{{ title[0] }}</strong>
+        <em v-if="title.length == 2">{{ title[1] }}</em>
+      </template>
     </div>
   </div>
 </template>
