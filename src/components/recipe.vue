@@ -24,10 +24,10 @@ export default {
   components: { Ingredient, IngredientSection },
   computed: {
     what() {
-      return this._state.currentRecipeData ? this._state.currentRecipeData.what : ''
+      return this._state.currentRecipeData.what
     },
     how() {
-      return this._state.currentRecipeData ? marked(this._state.currentRecipeData.how) : ''
+      return marked(this._state.currentRecipeData.how)
     }
   }
 }

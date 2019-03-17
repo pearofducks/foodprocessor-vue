@@ -19,23 +19,21 @@ export default {
   props: ['amountData', 'titleData'],
   data: () => ({
     isCompleted: false,
-    didExpand: true
   }),
   computed: {
     amount() {
-      let amountArray = /(\d*\.?\d+)\s(.+)/.exec(this.amountData)
-      let calculatedAmount = ''
+      const amountArray = /(\d*\.?\d+)\s(.+)/.exec(this.amountData)
       if (amountArray) {
-        let expanded_measure = this.expand(amountArray[2])
-        let amount_raw = parseFloat(amountArray[1])
-        let amount_display = this.prettyify_amount(amount_raw)
-        let greaterThanOne = amount_raw > 1
-        let addSuffix = greaterThanOne && this.didExpand
-        calculatedAmount = `${amount_display} ${expanded_measure}${addSuffix ? 's' : ''}`
-      } else {
-        calculatedAmount = this.amountData
+        const toExpand = amountArray[2]
+        const expanded_measure = this.expand(toExpand)
+        const didExpand = expanded_measure !== toExpand
+        const amount_raw = parseFloat(amountArray[1])
+        const amount_display = this.prettyify_amount(amount_raw)
+        const greaterThanOne = amount_raw > 1
+        const addSuffix = greaterThanOne && didExpand
+        return `${amount_display} ${expanded_measure}${addSuffix ? 's' : ''}`
       }
-      return calculatedAmount
+      return this.amountData
     },
     title() {
       return this.titleData.split(' - ')
@@ -50,27 +48,18 @@ export default {
     },
     expand(measure) {
       switch (measure) {
-        case 'c':
-          return 'cup'
-        case 't':
-          return 'teaspoon'
-        case 'T':
-          return 'tablespoon'
-        case 'ml':
-          return 'milliliter'
-        case 'g':
-          return 'gram'
-        default:
-          this.didExpand = false
-          return measure
+        case 'c': return 'cup'
+        case 't': return 'teaspoon'
+        case 'T': return 'tablespoon'
+        case 'ml': return 'milliliter'
+        case 'g': return 'gram'
+        default: return measure
       }
     },
     prettyify_amount(amount) {
-      if (Number.isInteger(amount)) {
-        return amount
-      }
+      if (Number.isInteger(amount)) return amount
       let whole_num = Math.floor(amount)
-      let remain = amount - whole_num
+      const remain = amount - whole_num
       whole_num = whole_num == 0 ? '' : whole_num
       switch (remain) {
         case 0.25:
