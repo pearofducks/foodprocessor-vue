@@ -4,6 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: './src/main.js',
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -31,10 +32,6 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
-  },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true
   },
   performance: {
     hints: false
